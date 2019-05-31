@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  smerfUrl: "https://localhost/debugsmerf3/api/",
 };

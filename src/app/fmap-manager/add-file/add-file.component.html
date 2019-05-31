@@ -1,0 +1,24 @@
+<div fxLayout="column">
+  <h2 class="mat-h2">Add File</h2>  
+  <input type="file" #file style="display: none;" (change)="onFileSelected()" />  
+    <div fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <button type="button" mat-raised-button (click)="fileOpenDialog()">Open...</button>
+        <mat-form-field fxFlex=90>
+          <input matInput aria-label="File path" readonly aria-readonly="true" value="{{ selectedPath }}">
+          <mat-hint>Click "Open..." to select the file to upload.</mat-hint>              
+          <mat-error *ngIf="selectedPath==null || selectedPath==''">
+            <ul class="validation-error-list">
+                <li class="validation-error-item">File not selected.</li>                  
+            </ul>                  
+          </mat-error>     
+        </mat-form-field>                                                        
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+        <button fxFlex=50 mat-raised-button (click)="submit()" [disabled]="selectedFile==null || uploading">Submit</button>
+        <button fxFlex mat-raised-button (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+</div>
+
+

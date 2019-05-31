@@ -1,0 +1,54 @@
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="permId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>PERM ID</mat-header-cell>
+    <mat-cell *matCellDef="let entry">{{ entry.permId }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="paymentDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Payment Date</mat-header-cell>
+    <mat-cell *matCellDef="let entry">{{ entry.paymentDate | date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fmap">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>FMAP</mat-header-cell>
+    <mat-cell *matCellDef="let entry">{{ entry.fmap }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="eligibilityCategory">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Eligibility Category</mat-header-cell>
+    <mat-cell *matCellDef="let entry">{{ entry.eligibilityCategory }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="screenshotDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Screenshot Date</mat-header-cell>
+    <mat-cell *matCellDef="let entry">{{ entry.screenshotDate | date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let entry">
+        <button mat-button (click)="editEntry(entry)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button (click)="deleteEntry(entry.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-button (click)="viewEntry(entry)">
+            <mat-icon>view_headline</mat-icon>
+          </button>
+      </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+
+<!--
+  permId: string
+    paymentDate: Date
+    fmap: number
+    eligibilityCategory: string
+    id: number
+    screenshotDate: Date
+-->

@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/",
             "outputPath": "dist/fmap-file-manager",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -23,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css"              
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -36,6 +37,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref": "/fmap/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -52,17 +54,30 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "dev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ],
+              "baseHref": "/fmap/"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fmap-file-manager:build"
+            "browserTarget": "fmap-file-manager:build",
+            "baseHref": "/"
           },
           "configurations": {
             "production": {
               "browserTarget": "fmap-file-manager:build:production"
+            },
+            "dev": {
+              "browserTarget": "fmap-file-manager:build:dev"
             }
           }
         },

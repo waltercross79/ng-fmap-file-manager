@@ -1,0 +1,54 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$mat-ak-blue-grey: (
+  light: #62727b,
+  dark: #102027,
+  base: #37474f,
+  contrast: (
+    light: $light-primary-text,
+    dark: $light-primary-text,
+    default: $light-primary-text,    
+  )
+);
+
+$mat-ak-purple: (
+  light: #fff1ff,
+  dark: #af8eb5,
+  base: #e1bee7,
+  contrast: (
+    light: $dark-primary-text,
+    dark: $dark-primary-text,
+    default: $dark-primary-text,    
+  )
+);
+
+
+
+$ak-spa-primary: mat-palette($mat-ak-blue-grey, base, light, dark);
+$ak-spa-accent: mat-palette($mat-ak-purple, base, light, dark);
+ //$ak-spa-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ak-spa-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ak-spa-theme: mat-dark-theme($ak-spa-primary, $ak-spa-accent, $ak-spa-warn);
+// $ak-spa-theme: mat-light-theme($ak-spa-secondary, $ak-spa-accent, $ak-spa-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ak-spa-theme);
+

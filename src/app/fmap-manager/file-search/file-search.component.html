@@ -1,0 +1,18 @@
+<h2 class="mat-h2">Search Files</h2>
+
+<div fxLayout="column" >
+  <form (ngSubmit)="submit()">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-form-field appearance="outline" fxFlex="90">        
+        <input matInput type="text" [formControl]="search">                        
+        <mat-hint>Enter file name or part of it and click the search button.</mat-hint>
+      </mat-form-field>    
+      <button mat-raised-button fxFlex>
+          <mat-icon>search</mat-icon>
+        </button>
+    </div>
+  </form>
+</div>
+<div style="margin-top: 40px;">  
+  <app-file-list [filter]="(filter$ | async)"></app-file-list>
+</div>

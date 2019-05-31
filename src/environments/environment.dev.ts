@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  smerfUrl: "https://localhost/fmap/api/"  
+  smerfUrl: "https://localhost/debugsmerf3/api/"  
 };
 
 /*

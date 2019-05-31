@@ -1,0 +1,33 @@
+<mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>File Name</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{ file.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="receivedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Received Date</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{ file.receivedDate | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="processedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Processed Date</mat-header-cell>
+        <mat-cell *matCellDef="let file">{{ file.processedDate | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let file">
+            <a mat-button routerLink="/files/{{file.id}}">
+                <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-button (click)="delete(file.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator [pageSizeOptions]="[2, 3, 5]"></mat-paginator>

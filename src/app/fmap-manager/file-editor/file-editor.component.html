@@ -1,0 +1,45 @@
+<h2 class="mat-h2">File Editor</h2>
+<div fxLayout="row" fxLayout.xs="column" class="marginb-20">
+<form [formGroup]="fileForm" (ngSubmit)="submit()">
+  <div fxLayout="row" fxLayoutGap="10px">
+    <mat-form-field appearance="outline" required style="width: 600px;">
+      <mat-label>File Name:</mat-label>
+      <input matInput type="text" formControlName="name" required style="width: 400px;">
+      <!-- <mat-error *ngIf="name.invalid">File name is missing</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+    <div fxFlex=50>
+      <mat-form-field appearance="outline" required>
+        <mat-label>Received Date:</mat-label>
+        <input matInput [matDatepicker]="receivedDatePicker" formControlName="receivedDate" required>
+        <mat-datepicker-toggle matSuffix [for]="receivedDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #receivedDatePicker ></mat-datepicker>
+        <mat-error *ngIf="receivedDateControl.invalid">{{ getReceivedDateMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+          <mat-label>Processed Date:</mat-label>
+          <input matInput [matDatepicker]="processedDatePicker" formControlName="processedDate">
+          <mat-datepicker-toggle matSuffix [for]="processedDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #processedDatePicker></mat-datepicker>    
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <button fxFlex=40 mat-raised-button [disabled]="fileForm.invalid">Process</button>  
+    <button type="button" (click)="update()" fxFlex=30 mat-raised-button [disabled]="fileForm.invalid">Update</button>  
+    <button fxFlex=30 mat-raised-button type="button" (click)="cancel()">Close</button>
+  </div>
+</form>
+</div>
+<div *ngIf="!showEntries" fxLayout="row" class="marginb-20">
+  <button mat-raised-button color="primary" (click)="displayEntries()">
+    <mat-icon>list</mat-icon>
+    <mat-label>Show Entries</mat-label>
+  </button>    
+</div>
+<div *ngIf="showEntries" fxLayout="row" class="marginb-20">
+  <app-entries-list file-id="{{ id }}" fxFlex=100></app-entries-list>
+</div>
