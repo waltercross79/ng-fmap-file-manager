@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  smerfUrl: "https://localhost/debugsmerf3/api/",
+  smerfUrl: "https://arms-web01.permrc.com/fmap_smerf/api/",
 };
